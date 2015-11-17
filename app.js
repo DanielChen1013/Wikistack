@@ -5,7 +5,8 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	PORT = 1337,
 	app = express(),
-	routes = require('./routes/'),
+	// routes = require('./routes/index'),
+	wiki = require('./routes/wiki'),
 	swig = require('swig');
 
 // Swig boilerplate
@@ -22,7 +23,9 @@ app.use(bodyParser.json()); // for AJAX (not used in this workshop)
 app.use(morgan('dev')); // logs req & res properties on response send
 
 // dynamic routing
-app.use('/', routes);
+// app.use('/', routes);
+
+app.use('/wiki', wiki);
 
 // static routing
 app.use(express.static(__dirname + '/public'));
